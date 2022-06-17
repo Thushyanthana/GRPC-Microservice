@@ -1,0 +1,45 @@
+
+
+syntax = "proto3";
+
+option csharp_namespace = "userGRPC";
+
+package greet;
+
+service userService {
+  rpc Get(Empty) returns (Users);
+  rpc Post(User) returns (User);
+   rpc GetByID(UserRowIdFilter) returns (User);
+    rpc Put(User) returns (User);
+     rpc Delete(UserRowIdFilter) returns (Empty);
+     rpc Calculate(UserRowIdFilter) returns(CalculateGrade);
+}
+
+message UserRowIdFilter {
+    int32 Id = 1;
+}
+
+message Empty {}
+
+// The request message containing the user's name.
+message User {
+    int32 Id = 1;
+    string NameWithInitail = 2;
+    double Mark1 = 3;
+    double Mark2 = 4;
+    double Mark3 = 5;
+    int32 Position = 7;
+}
+
+message CalculateGrade {
+int32 Id = 1;
+bool isValid=2;
+string NameWithInitail=3;
+double Total =4;
+string Grade = 5;
+}
+
+// The response message containing the greetings.
+message Users {
+   repeated User items = 1;
+}
